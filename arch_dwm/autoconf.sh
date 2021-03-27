@@ -15,7 +15,7 @@ function toaurs(){
 	cd "$AURSDIR"
 }
 installi="sudo pacman -Sy --needed --noconfirm"
-makepkgi="makepkg -is --needed --noconform"
+makepkgi="makepkg -is --needed --noconfirm"
 cprf="/bin/cp -rf"
 
 ####### BASE PACKAGES
@@ -50,12 +50,14 @@ fi
 ####### AURS AND OTHERS
 toaurs
 git clone git://git.suckless.org/dwm
-git clone https://aur.archlinux.org/slstatus-git.git
+git clone https://git.suckless.org/slstatus
 
 ## SLSTATUS
 toaurs
-cd slstatus-git
-$makepkgi
+cd slstatus
+sudo make install
+$cprf "$AUTODIR/dwm/slstatus.conf.h" ./config.h
+sudo make install
 
 ## DWM
 toaurs
