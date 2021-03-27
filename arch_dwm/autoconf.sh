@@ -98,7 +98,7 @@ fi
 # Windows Fonts
 if $INSTALL_WINDOWS_FONTS; then
 	toaurs
-	cd "$AURSDIR/SnippetsFonts/WinfowsFonts"
+	cd SnippetsFonts/WindowsFonts
 	
 	cat fonts.tar.gz.part* > fonts.tar.gz
 	tar xzf fonts.tar.gz
