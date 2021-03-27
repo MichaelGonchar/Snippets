@@ -88,7 +88,7 @@ sudo chmod +x /etc/vimrc
 
 ## KITTY
 mkdir -p "$HOMEDIR/.config/kitty"
-cprf "$AUTODIR/kitty/kitty.conf" "$HOMEDIR/.config/kitty/kitty.conf"
+$cprf "$AUTODIR/kitty/kitty.conf" "$HOMEDIR/.config/kitty/kitty.conf"
 
 ## FONTS
 sudo $cprf "$AUTODIR/fonts/local.conf" "/etc/fonts/local.conf"
