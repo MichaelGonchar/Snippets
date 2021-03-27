@@ -14,9 +14,15 @@ mkdir -p "$AURSDIR"
 function toaurs(){
 	cd "$AURSDIR"
 }
-alias installi="sudo pacman -Sy --needed --noconfirm"
-alias makepkgi="makepkg -is --needed --noconform"
-alias cprf="/bin/cp -rf"
+function installi() {
+	sudo pacman -Sy --needed --noconfirm "$@"
+}
+function makepkgi() {
+	makepkg -is --needed --noconform "$@"
+}
+function cprf() {
+	/bin/cp -rf "$@"
+}
 
 ####### BASE PACKAGES
 installi \
