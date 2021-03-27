@@ -78,7 +78,7 @@ sudo g++ "$AUTODIR/src/brightnessconf.cpp" -o /usr/bin/brightnessconf
 sudo chmod u=rwxs,g=rxs,o=rx /usr/bin/brightnessconf
 
 ## LOCKSCREEN
-sudo g++ "$AUTODIR/src/slock.cpp" -o /usr/bin/slock
+sudo g++ "$AUTODIR/src/slock.cpp" -o /usr/bin/slock -lX11 -lcrypt
 sudo chmod u=rwxs,g=rxs,o=rx /usr/bin/slock
 
 ## VIM
