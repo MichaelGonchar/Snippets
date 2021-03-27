@@ -14,20 +14,14 @@ mkdir -p "$AURSDIR"
 function toaurs(){
 	cd "$AURSDIR"
 }
-function installi() {
-	sudo pacman -Sy --needed --noconfirm "$@"
-}
-function makepkgi() {
-	makepkg -is --needed --noconform "$@"
-}
-function cprf() {
-	/bin/cp -rf "$@"
-}
+installi="sudo pacman -Sy --needed --noconfirm"
+makepkgi="makepkg -is --needed --noconform"
+cprf="/bin/cp -rf"
 
 ####### BASE PACKAGES
-installi \
+$installi \
 	git \
-	xorg xorg-xinit \
+	xorg xorg-xinit libx11 \
 	gvim \
 	gcc make cmake \
 	kitty \
@@ -45,10 +39,10 @@ sudo usermod -a -G wheel,audio,pulse "$USERNAME"
 
 ####### ADDITIONAL PACKAGES
 if $INSTALL_LIBREOFFICE; then
-	installi libreoffice
+	$installi libreoffice
 fi
 if $INSTALL_FIREFOX; then
-	installi firefox
+	$installi firefox
 fi
 
 
@@ -60,23 +54,23 @@ git clone https://aur.archlinux.org/slstatus-git.git
 ## SLSTATUS
 toaurs
 cd slstatus-git
-makepkgi
+$makepkgi
 
 ## DWM
 toaurs
 cd dwm
 sudo make install
-cprf "$AUTODIR/dwm/config.h" ./
-cprf "$AUTODIR/dwm/XF86keysym.h" ./
+$cprf "$AUTODIR/dwm/config.h" ./
+$cprf "$AUTODIR/dwm/XF86keysym.h" ./
 sudo make install
 sudo mkdir -p /etc/X11/xinit/
-sudo cprf "$AUTODIR/dwm/xinitrc" /etc/X11/xinit/xinitrc
+sudo $cprf "$AUTODIR/dwm/xinitrc" /etc/X11/xinit/xinitrc
 sudo chmod +x /etc/X11/xinit/xinitrc
 cat "$AUTODIR/dwm/bash_profile_part.sh" >> "$HOMEDIR/.bash_profile"
 
 
 ## SCREENSHOTS
-sudo cprf "$AUTODIR/dwm/screenshot" /usr/bin
+sudo $cprf "$AUTODIR/dwm/screenshot" /usr/bin
 sudo chmod +x /usr/bin/screenshot
 
 ## BRIGHTNESS
@@ -88,7 +82,7 @@ sudo g++ "$AUTODIR/src/slock.cpp" -o /usr/bin/slock
 sudo chmod u=rwxs,g=rxs,o=rx /usr/bin/slock
 
 ## VIM
-sudo cprf "$AUTODIR/vim/vimrc" /etc/
+sudo $cprf "$AUTODIR/vim/vimrc" /etc/
 sudo chmod +x /etc/vimrc
 
 ## KITTY
@@ -96,7 +90,7 @@ mkdir -p "$HOMEDIR/.config/kitty"
 cprf "$AUTODIR/kitty/kitty.conf" "$HOMEDIR/.config/kitty/kitty.conf"
 
 ## FONTS
-sudo cprf "$AUTODIR/fonts/local.conf" "/etc/fonts/local.conf"
+sudo $cprf "$AUTODIR/fonts/local.conf" "/etc/fonts/local.conf"
 if $INSTALL_WINDOWS_FONTS; then
 	toaurs
 	git clone https://github.com/MiloLug/SnippetsFonts.git
@@ -104,7 +98,7 @@ fi
 # Windows Fonts
 if $INSTALL_WINDOWS_FONTS; then
 	toaurs
-	cd SnippetsFonts/WinfowsFonts
+	cd "$AURSDIR/SnippetsFonts/WinfowsFonts"
 	
 	cat fonts.tar.gz.part* > fonts.tar.gz
 	tar xzf fonts.tar.gz
