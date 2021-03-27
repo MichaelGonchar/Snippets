@@ -72,7 +72,7 @@ sudo mkdir -p /etc/X11/xinit/
 sudo $cprf "$AUTODIR/dwm/xinitrc" /etc/X11/xinit/xinitrc
 sudo chmod +x /etc/X11/xinit/xinitrc
 cat "$AUTODIR/dwm/bash_profile_part.sh" >> "$HOMEDIR/.bash_profile"
-
+mkdir "$HOMEDIR/dwm.conf.d"
 
 ## SCREENSHOTS
 sudo $cprf "$AUTODIR/dwm/screenshot" /usr/bin
