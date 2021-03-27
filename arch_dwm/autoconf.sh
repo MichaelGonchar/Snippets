@@ -36,7 +36,7 @@ $installi \
 sudo chmod +x /usr/bin/xinit
 sudo rm -rf ~/.pulse ~/.asound*
 sudo usermod -a -G wheel,audio,pulse "$USERNAME"
-sudo $cprf "$AUTODIR/modprobe.d/*" "/etc/modprobe.d/"
+sudo $cprf $AUTODIR/modprobe.d/* /etc/modprobe.d/
 
 ####### ADDITIONAL PACKAGES
 if $INSTALL_LIBREOFFICE; then
