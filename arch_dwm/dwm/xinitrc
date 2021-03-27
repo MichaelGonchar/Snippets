@@ -15,7 +15,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 
 while true; do
   # BACKGROUND
-  bg_file=~/dwm_conf/bg.jpg
+  bg_file=~/dwm.conf.d/bg.jpg
   if test -f "$bg_file"; then
     feh --bg-fill "$bg_file"
   fi
