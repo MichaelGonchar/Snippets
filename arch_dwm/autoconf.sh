@@ -14,12 +14,12 @@ mkdir -p "$AURSDIR"
 function toaurs(){
 	cd "$AURSDIR"
 }
-alias install="sudo pacman -Sy --needed --noconfirm"
+alias installi="sudo pacman -Sy --needed --noconfirm"
 alias makepkgi="makepkg -is --needed --noconform"
 alias cprf="/bin/cp -rf"
 
 ####### BASE PACKAGES
-install \
+installi \
 	git \
 	xorg xorg-xinit \
 	gvim \
@@ -39,10 +39,10 @@ sudo usermod -a -G wheel,audio,pulse "$USERNAME"
 
 ####### ADDITIONAL PACKAGES
 if $INSTALL_LIBREOFFICE; then
-	install libreoffice
+	installi libreoffice
 fi
 if $INSTALL_FIREFOX; then
-	install firefox
+	installi firefox
 fi
 
 
