@@ -19,6 +19,8 @@ makepkgi="makepkg -is --needed --noconfirm"
 cprf="/bin/cp -rf"
 
 ####### BASE PACKAGES
+sudo pacman -Syu dkms base-devel --needed --noconfirm
+
 $installi \
 	git \
 	xorg xorg-xinit libx11 \
